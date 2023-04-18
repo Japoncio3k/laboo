@@ -20,7 +20,13 @@ int Canal::getTotalDeVisualizacoes() {
 }
 
 bool Canal::postar(Video* v) {
-  if(this->quantidade == 15) {
+  bool temIgual = false;
+  for(int i = 0; i < this->quantidade; i++){
+    if(this->videos[i] == v){
+      temIgual = true;
+    }
+  }
+  if(this->quantidade == 15 || v->getDuracao() == 0 || temIgual) {
     return false;
   }
   this->videos[quantidade] = v;
