@@ -3,13 +3,15 @@
 
 using namespace std;
 
-Canal::Canal(string nome, int maximoDeVideos): nome (nome), maximoDeVideos (maximoDeVideos){}
+Canal::Canal(string nome, int maximoDeVideos): nome (nome), maximoDeVideos (maximoDeVideos){
+  videos = new Video*[maximoDeVideos];
+}
 
 Canal::~Canal(){
   cout << endl << "Destrutor de canal: " << this->nome << " - " << this->quantidade << " videos" << endl;
-  for(int i=0; i<this->quantidade; i++){
-    delete this->videos[i];
-  }
+  // for(int i=0; i<this->quantidade; i++){
+  //   delete this->videos[i];
+  // }
   delete this->videos;
   cout << "Canal destruido" << endl;
 }

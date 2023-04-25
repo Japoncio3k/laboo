@@ -30,9 +30,9 @@ void teste () {
 }
 
 //* COMENTE O MAIN AO SUBMETER
-// int main () {
-//   teste ();
-//   return 0;
-// }
+int main () {
+  teste ();
+  return 0;
+}
 
 //*/
