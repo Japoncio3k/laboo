@@ -5,6 +5,15 @@ using namespace std;
 
 Canal::Canal(string nome, int maximoDeVideos): nome (nome), maximoDeVideos (maximoDeVideos){}
 
+Canal::~Canal(){
+  cout << endl << "Destrutor de canal: " << this->nome << " - " << this->quantidade << " videos" << endl;
+  for(int i=0; i<this->quantidade; i++){
+    delete this->videos[i];
+  }
+  delete this->videos;
+  cout << "Canal destruido" << endl;
+}
+
 int Canal::getDuracaoTotal() {
   int duracao = 0;
   for(int i=0; i<this->quantidade; i++){
@@ -48,10 +57,6 @@ void Canal::imprimir(){
 
 string Canal::getNome(){
   return this->nome;
-}
-
-void Canal::setNome(string nomeNovo){
-  this->nome = nomeNovo;
 }
 
 int Canal::getQuantidade(){

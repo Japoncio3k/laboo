@@ -13,12 +13,12 @@ private:
 
 public:
   Canal(string nome, int maximoDeVideos);
+  ~Canal();
   int getDuracaoTotal();
   int getTotalDeVisualizacoes();
   bool postar(Video* v);
   void imprimir();
   string getNome();
-  void setNome(string nomeNovo);
   int getQuantidade();
   Video** getVideos();
 };

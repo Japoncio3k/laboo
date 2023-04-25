@@ -12,12 +12,11 @@ private:
 
 public:
   Video(string nome, int duracao);
+  ~Video();
   void assistir (int tempo);    
   void imprimir ();
   string getNome();
   int getDuracao();
-  void setNome(string nomeNovo);
-  void setDuracao(int duracaoNova);
   int getVisualizacoes();
 };
 

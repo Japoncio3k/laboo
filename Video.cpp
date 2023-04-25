@@ -5,6 +5,10 @@ using namespace std;
 
 Video::Video(string nome, int duracao): nome (nome), duracao (duracao){}
 
+Video::~Video(){
+  cout << "Destrutor de video com " << this->visualizacoes << " visualizacoes: " << this->nome << endl; 
+}
+
 void Video::assistir(int tempo) {
   double porcentagemAssistida = (double) tempo/duracao;
   if(porcentagemAssistida-0.3>=0) {
@@ -24,14 +28,6 @@ string Video::getNome(){
 
 int Video::getDuracao(){
   return this->duracao;
-}
-
-void Video::setNome(string nomeNovo){
-  this->nome = nomeNovo;
-}
-
-void Video::setDuracao(int duracaoNova){
-  this->duracao = duracaoNova;
 }
 
 int Video::getVisualizacoes(){

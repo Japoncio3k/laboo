@@ -7,6 +7,7 @@
 using namespace std;
 
 void teste () {
+  //exercicio 1
   Canal* hoosiers = new Canal("Hoosiers",7);
   Video* killer = new Video("Killer",34);
   Video* rules = new Video("Rules",58);
@@ -24,6 +25,7 @@ void teste () {
   hoosiers->postar(rules);
   hoosiers->postar(rubyBlue);
   hoosiers->imprimir();
+  delete hoosiers;
   return;
 }
 
