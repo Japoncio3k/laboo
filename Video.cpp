@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Video::Video(string nome, int duracao): nome (nome), duracao (duracao){}
+
 void Video::assistir(int tempo) {
   double porcentagemAssistida = (double) tempo/duracao;
   if(porcentagemAssistida-0.3>=0) {

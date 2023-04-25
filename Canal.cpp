@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Canal::Canal(string nome, int maximoDeVideos): nome (nome), maximoDeVideos (maximoDeVideos){}
+
 int Canal::getDuracaoTotal() {
   int duracao = 0;
   for(int i=0; i<this->quantidade; i++){
@@ -26,7 +28,7 @@ bool Canal::postar(Video* v) {
       temIgual = true;
     }
   }
-  if(this->quantidade == 15 || v->getDuracao() == 0 || temIgual) {
+  if(this->quantidade >= this->maximoDeVideos || v->getDuracao() == 0 || temIgual) {
     return false;
   }
   this->videos[quantidade] = v;

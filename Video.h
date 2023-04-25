@@ -11,6 +11,7 @@ private:
   int visualizacoes = 0;
 
 public:
+  Video(string nome, int duracao);
   void assistir (int tempo);    
   void imprimir ();
   string getNome();

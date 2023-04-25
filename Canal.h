@@ -7,10 +7,12 @@ using namespace std;
 class Canal {
 private:
   string nome;
-  Video* videos[MAXIMO_VIDEOS];
+  int maximoDeVideos;
+  Video* *videos = new Video*[maximoDeVideos];
   int quantidade = 0;
 
 public:
+  Canal(string nome, int maximoDeVideos);
   int getDuracaoTotal();
   int getTotalDeVisualizacoes();
   bool postar(Video* v);
