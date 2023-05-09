@@ -3,10 +3,10 @@
 
 using namespace std;
 
-Video::Video(string nome, int duracao): nome (nome), duracao (duracao){}
+Video::Video(string nome, int duracao):Conteudo(nome,duracao) {}
 
 Video::~Video(){
-  cout << "Destrutor de video com " << this->visualizacoes << " visualizacoes: " << this->nome << endl; 
+  cout << "Destrutor de video com " << this->visualizacoes << " visualizacoes: " << this->getNome() << endl; 
 }
 
 void Video::assistir(int tempo) {
@@ -18,18 +18,6 @@ void Video::assistir(int tempo) {
 }
 
 void Video::imprimir() {
-  cout << "Video: " << this->nome << " - " << this->duracao << " min - " << this->visualizacoes << " visualizacoes" << endl;
+  cout << "Video: " << this->getNome() << " - " << this->duracao << " min - " << this->visualizacoes << " visualizacoes" << endl;
   return;
-}
-
-string Video::getNome(){
-  return this->nome;
-}
-
-int Video::getDuracao(){
-  return this->duracao;
-}
-
-int Video::getVisualizacoes(){
-  return this->visualizacoes;
 }

@@ -1,23 +1,16 @@
 #ifndef VIDEO_H
 #define VIDEO_H
+#include "Conteudo.h"
 #include <string>
 
 using namespace std;
 
-class Video {
-private: 
-  string nome;
-  int duracao;
-  int visualizacoes = 0;
-
+class Video : public Conteudo {
 public:
   Video(string nome, int duracao);
   ~Video();
   void assistir (int tempo);    
   void imprimir ();
-  string getNome();
-  int getDuracao();
-  int getVisualizacoes();
 };
 
 #endif
