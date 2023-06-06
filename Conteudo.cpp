@@ -3,18 +3,10 @@
 
 using namespace std;
 
-Conteudo::Conteudo(string nome, int duracao): nome (nome), duracao (duracao){}
+Conteudo::Conteudo(string nome, int duracao) : nome(nome), duracao(duracao) {}
 
-Conteudo::~Conteudo(){}
+Conteudo::~Conteudo() {}
 
-string Conteudo::getNome(){
-  return this->nome;
-}
+string Conteudo::getNome() { return this->nome; }
 
-int Conteudo::getDuracao(){
-  return this->duracao;
-}
-
-int Conteudo::getVisualizacoes(){
-  return this->visualizacoes;
-}
+int Conteudo::getDuracao() { return this->duracao; }

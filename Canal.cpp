@@ -13,7 +13,7 @@ Canal::Canal(string nome, Conteudo** conteudos, int quantidade): nome (nome), co
 }
 
 Canal::~Canal(){
-  cout << endl << "Destrutor de canal: " << this->nome << " - " << this->quantidade << " videos" << endl;
+  cout << endl << "Destrutor de canal: " << this->nome << " - " << this->quantidade << " conteudos" << endl;
   for(int i=0; i<this->quantidade; i++){
     delete this->conteudos[i];
   }
@@ -57,8 +57,11 @@ bool Canal::postar(Conteudo* v) {
 }
 
 void Canal::imprimir(){
-  cout << "Canal: " << this->nome << " - " << this->getDuracaoTotal() << " minutos totais" << endl;
+  cout << endl << "Canal: " << this->nome << " - " << this->getDuracaoTotal() << " minutos totais" << endl;
   cout << "\t" << this->quantidade << " elementos postados" << endl << endl; 
+  for(int i=0; i<this->quantidade; i++){
+    this->conteudos[i]->imprimir();
+  }
 }
 
 string Canal::getNome(){

@@ -10,14 +10,14 @@ private:
 
 protected:
   int duracao;
-  int visualizacoes = 0;
 
 public:
   Conteudo(string nome, int duracao);
   virtual ~Conteudo();
   string getNome();
   int getDuracao();
-  virtual int getVisualizacoes();
+  virtual int getVisualizacoes() = 0;
+  virtual void imprimir() = 0;
 };
 
 #endif

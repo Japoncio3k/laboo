@@ -3,13 +3,13 @@
 
 #include "Video.h"
 
-class VideoCurto: public Video {
+class VideoCurto : public Video {
 public:
-    VideoCurto(string nome, int duracao);
-    ~VideoCurto();
-
-private:
-
+  VideoCurto(string nome, int duracao);
+  ~VideoCurto();
+  void imprimir();
+  void assistir();
+  void assistir(int duracao);
 };
 
 #endif
