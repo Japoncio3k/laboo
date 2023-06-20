@@ -1,21 +1,20 @@
 #include "Video.h"
 #include <string>
+#include <list>
 
 using namespace std;
 
 class Lista : public Conteudo {
 protected:
-  Video** videos;
-  int quantidade = 0;
-  int tamanho;
+  list<Video*>* videos;
 
 public:
-  Lista(string nome, int tamanho);
+  Lista(string nome);
   ~Lista();
   bool adicionar(Video* v);
-  bool adicionar (Lista* l); 
+  void adicionar (Lista* l); 
   void imprimir();
-  Video** getVideos();
-  int getQuantidade();
+  list<Video*>* getVideos();
   int getVisualizacoes();
+  int getDuracao();
 };

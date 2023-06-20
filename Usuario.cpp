@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Usuario::Usuario(string nome, string nomeDoCanal, int maximo) : nome(nome) {
-  this->canal = new Canal(nomeDoCanal, maximo);
+Usuario::Usuario(string nome, string nomeDoCanal) : nome(nome) {
+  this->canal = new Canal(nomeDoCanal);
 }
 
 Usuario::Usuario(string nome, Canal* canal) : nome(nome), canal (canal) {}

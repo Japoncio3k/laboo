@@ -5,6 +5,6 @@ using namespace std;
 
 class UsuarioVerificado : public Usuario {
 public:
-  UsuarioVerificado(string nome, string nomeDoCanal, int maximo);
+  UsuarioVerificado(string nome, string nomeDoCanal);
   virtual ~UsuarioVerificado();
 };

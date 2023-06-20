@@ -15,7 +15,7 @@ public:
   Conteudo(string nome, int duracao);
   virtual ~Conteudo();
   string getNome();
-  int getDuracao();
+  virtual int getDuracao();
   virtual int getVisualizacoes() = 0;
   virtual void imprimir() = 0;
 };

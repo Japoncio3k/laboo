@@ -5,7 +5,7 @@ using namespace std;
 
 class CanalVerificado: public Canal {
 public:
-  CanalVerificado(string nome, int maximo);
+  CanalVerificado(string nome);
   virtual ~CanalVerificado();    
-  bool postar(Conteudo *v);
+  void postar(Conteudo *v);
 };

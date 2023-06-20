@@ -6,6 +6,7 @@
 class VideoCurto : public Video {
 public:
   VideoCurto(string nome, int duracao);
+  VideoCurto(string nome, int duracao, int visualizacoes);
   ~VideoCurto();
   void imprimir();
   void assistir();

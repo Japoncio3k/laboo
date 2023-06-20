@@ -3,7 +3,22 @@
 
 using namespace std;
 
-Video::Video(string nome, int duracao) : Conteudo(nome, duracao) {}
+Video::Video(string nome, int duracao) : Conteudo(nome, duracao) {
+  if(duracao<=0){
+    throw new invalid_argument("duracao invalida");
+  }
+}
+
+Video::Video(string nome, int duracao, int visualizacoes) : Conteudo(nome, duracao) {
+  if(duracao<=0){
+    throw new invalid_argument("duracao invalida");
+  }
+  if(visualizacoes<0){
+    throw new invalid_argument("visualizacao invalida");
+  }else{
+    this->visualizacoes = visualizacoes;
+  }
+}
 
 double Video::porcentagem = 0.3;
 
@@ -34,4 +49,6 @@ void Video::setPorcentagem(double valor) {
   Video::porcentagem = valor;
 }
 
-int Video::getVisualizacoes() { return this->visualizacoes; }
+int Video::getVisualizacoes() { 
+  return this->visualizacoes; 
+}

@@ -1,24 +1,19 @@
 #include "CanalVerificado.h"
 #include "Conteudo.h"
+#include <stdexcept>
+#include <algorithm>
 
 using namespace std;
 
-CanalVerificado::CanalVerificado(string nome, int maximo)
-    : Canal(nome, maximo){};
+CanalVerificado::CanalVerificado(string nome) : Canal(nome){};
 
 CanalVerificado::~CanalVerificado() {}
 
-bool CanalVerificado::postar(Conteudo *v) {
-  bool temIgual = false;
-  for (int i = 0; i < this->quantidade; i++) {
-    if (this->conteudos[i] == v) {
-      temIgual = true;
-    }
+void CanalVerificado::postar(Conteudo *v) {
+  vector<Conteudo*>::iterator it = find(this->conteudos->begin(),this->conteudos->end(),v);
+  if(it!=this->conteudos->end()){
+    throw new invalid_argument("conteudo repetido");
   }
-  if (this->quantidade >= this->maximo || v->getDuracao() == 0 || temIgual) {
-    return false;
-  }
-  this->conteudos[this->quantidade] = v;
-  this->quantidade++;
-  return true;
+
+  this->conteudos->push_back(v);
 }

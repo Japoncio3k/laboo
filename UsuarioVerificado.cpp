@@ -4,6 +4,6 @@
 
 using namespace std;
 
-UsuarioVerificado::UsuarioVerificado(string nome, string nomeDoCanal, int maximo): Usuario(nome, new CanalVerificado(nomeDoCanal, maximo)) {}
+UsuarioVerificado::UsuarioVerificado(string nome, string nomeDoCanal): Usuario(nome, new CanalVerificado(nomeDoCanal)) {}
 
 UsuarioVerificado::~UsuarioVerificado() {}

@@ -4,6 +4,8 @@ using namespace std;
 
 VideoCurto::VideoCurto(string nome, int duracao): Video (nome, duracao) {}
 
+VideoCurto::VideoCurto(string nome, int duracao, int visualizacoes): Video (nome, duracao, visualizacoes) {}
+
 VideoCurto::~VideoCurto() {}
 
 void VideoCurto::imprimir() {

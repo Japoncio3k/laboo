@@ -43,7 +43,10 @@
         "numbers": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "fstream": "cpp",
+        "list": "cpp"
     },
-    "editor.indentSize": 2
+    "editor.indentSize": 2,
+    "editor.tabSize": 2
 }

@@ -14,6 +14,7 @@ protected:
 
 public:
   Video(string nome, int duracao);
+  Video(string nome, int duracao, int visualizacoes);
   ~Video();
   virtual void assistir (int tempo);    
   virtual void imprimir ();

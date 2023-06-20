@@ -1,21 +1,21 @@
 #include "Canal.h"
 #include "VideoCurto.h"
+#include "NaoVerificado.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-Canal::Canal(string nome, int maximo): nome (nome), maximo (maximo){
-  conteudos = new Conteudo*[maximo];
+Canal::Canal(string nome): nome (nome){
+  conteudos = new vector<Conteudo*>();
 }
 
-Canal::Canal(string nome, Conteudo** conteudos, int quantidade): nome (nome), conteudos (conteudos), quantidade (quantidade)  {
-  this->maximo = quantidade;
-}
+Canal::Canal(string nome, vector<Conteudo*>*conteudos): nome (nome), conteudos (conteudos) {}
 
 Canal::~Canal(){
-  cout << endl << "Destrutor de canal: " << this->nome << " - " << this->quantidade << " conteudos" << endl;
-  for(int i=0; i<this->quantidade; i++){
-    delete this->conteudos[i];
+  cout << endl << "Destrutor de canal: " << this->nome << " - " << this->conteudos->size() << " conteudos" << endl;
+  for(unsigned int i=0; i<this->conteudos->size(); i++){
+    delete (*this->conteudos)[i];
   }
   delete this->conteudos;
   cout << "Canal destruido" << endl;
@@ -23,44 +23,41 @@ Canal::~Canal(){
 
 int Canal::getDuracaoTotal() {
   int duracao = 0;
-  for(int i=0; i<this->quantidade; i++){
-    duracao += this->conteudos[i]->getDuracao();
+  for(unsigned int i=0; i<this->conteudos->size(); i++){
+    try{
+      duracao += (*this->conteudos)[i]->getDuracao();
+    }catch(exception* e) {}
   }
   return duracao;
 } 
 
 int Canal::getTotalDeVisualizacoes() {
   int visualizacoes = 0;
-  for(int i=0; i<this->quantidade; i++){
-    visualizacoes += this->conteudos[i]->getVisualizacoes();
+  for(unsigned int i=0; i<this->conteudos->size(); i++){
+    visualizacoes += (*this->conteudos)[i]->getVisualizacoes();
   }
   return visualizacoes;
 }
 
-bool Canal::postar(Conteudo* v) {
+void Canal::postar(Conteudo* v) {
   VideoCurto* testaVideoCurto = dynamic_cast<VideoCurto*>(v);
   if(testaVideoCurto!=NULL){
-    return false;
+    throw new NaoVerificado();
   }
-  bool temIgual = false;
-  for(int i = 0; i < this->quantidade; i++){
-    if(this->conteudos[i] == v){
-      temIgual = true;  
-    }
+
+  vector<Conteudo*>::iterator it = find(this->conteudos->begin(),this->conteudos->end(),v);
+  if(it!=this->conteudos->end()){
+    throw new invalid_argument("conteudo repetido");
   }
-  if(this->quantidade >= this->maximo || v->getDuracao() == 0 || temIgual) {
-    return false;
-  }
-  this->conteudos[quantidade] = v;
-  this->quantidade++;
-  return true;
+
+  this->conteudos->push_back(v);
 }
 
 void Canal::imprimir(){
   cout << endl << "Canal: " << this->nome << " - " << this->getDuracaoTotal() << " minutos totais" << endl;
-  cout << "\t" << this->quantidade << " elementos postados" << endl << endl; 
-  for(int i=0; i<this->quantidade; i++){
-    this->conteudos[i]->imprimir();
+  cout << "\t" << this->conteudos->size() << " elementos postados" << endl << endl; 
+  for(unsigned int i=0; i<this->conteudos->size(); i++){
+    (*this->conteudos)[i]->imprimir();
   }
 }
 
@@ -68,10 +65,6 @@ string Canal::getNome(){
   return this->nome;
 }
 
-int Canal::getQuantidade(){
-  return this->quantidade;
-}
-
-Conteudo** Canal::getConteudos(){
+vector<Conteudo*>* Canal::getConteudos(){
   return this->conteudos;
 }

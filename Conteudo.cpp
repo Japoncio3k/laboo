@@ -7,6 +7,10 @@ Conteudo::Conteudo(string nome, int duracao) : nome(nome), duracao(duracao) {}
 
 Conteudo::~Conteudo() {}
 
-string Conteudo::getNome() { return this->nome; }
+string Conteudo::getNome() {
+  return this->nome; 
+}
 
-int Conteudo::getDuracao() { return this->duracao; }
+int Conteudo::getDuracao() {
+  return this->duracao; 
+}

@@ -1,79 +1,69 @@
 #include "Video.h"
 #include "Lista.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
-Lista::Lista(string nome, int tamanho): Conteudo(nome,0), tamanho (tamanho) {
-  this->videos = new Video*[tamanho];
+Lista::Lista(string nome): Conteudo(nome,0) {
+  this->videos = new list<Video*>();
 }
 
-Video** Lista::getVideos() {
+list<Video*>* Lista::getVideos() {
   return this->videos;
 }
 
 int Lista::getVisualizacoes() {
   int visualizacoes = 0;
-  for(int i = 0; i < this->quantidade; i++) {
-    visualizacoes += this->videos[i]->getVisualizacoes();
+  list<Video*>::iterator i = this->videos->begin();
+  while(i != this->videos->end()){
+    visualizacoes += (*i)->getVisualizacoes();
+    i++;
   }
   return visualizacoes;
 }
 
-int Lista::getQuantidade(){
-  return this->quantidade;
-}
-
 bool Lista::adicionar(Video* v) {
-  bool temIgual = false;
-  for(int i = 0; i < this->quantidade; i++){
-    if(this->videos[i] == v){
-      temIgual = true;  
-    }
-  }
-  if(this->quantidade >= this->tamanho || v->getDuracao() == 0 || temIgual) {
+  list<Video*>::iterator it = find(this->videos->begin(), this->videos->end(), v);
+  if(it!=this->videos->end()){
     return false;
   }
-  this->videos[this->quantidade] = v;
-  this->quantidade++;
+
+  if(v->getDuracao() == 0) {
+    return false;
+  }
+  this->videos->push_back(v);
   this->duracao += v->getDuracao();
   return true;
 }
 
-bool Lista::adicionar(Lista* l){
-  Lista* naoRepetidos = new Lista("Nao Repetidos", l->getQuantidade());
-
-  for(int i = 0; i < l->getQuantidade(); i++) {
-    bool ehRepetido = false;
-    for(int j = 0; j < this->getQuantidade(); j++){
-      if(this->videos[j] == l->videos[i]){
-        ehRepetido = true;
-      }
-    }
-    if(!ehRepetido){
-      naoRepetidos->adicionar(l->videos[i]);
-    }
+int Lista::getDuracao() {
+  if(this->videos->size() == 0) {
+    throw new logic_error("lista vazia");
   }
+  return this->duracao;
+}
 
-  if(naoRepetidos->getQuantidade() + this->getQuantidade() > this->tamanho){
-    return false;
+void Lista::adicionar(Lista* l){
+  list<Video*>::iterator i = l->videos->begin();
+  while(i!=l->videos->end()){
+    this->adicionar((*i));
+    i++;
   }
-  
-  for(int i = 0; i < naoRepetidos->getQuantidade(); i++) {
-    this->adicionar(naoRepetidos->videos[i]);
-  }
-
-  return true;
 }
 
 void Lista::imprimir() {
-  cout << "Lista com " << this->quantidade << " videos: " << getNome() << " - " << this->duracao << " minutos" << endl;
-  for (int i = 0; i < this->quantidade; i++) {
-    cout << "\t" << i+1 << ". " << this->videos[i]->getNome() << endl;
+  cout << "Lista com " << this->videos->size() << " videos: " << getNome() << " - " << this->duracao << " minutos" << endl;
+  list<Video*>::iterator i = this->videos->begin();
+  int cont = 1;
+  while(i!=this->videos->end()){
+    cout << "\t" << cont << ". " << (*i)->getNome() << endl;
+    cont++;
+    i++;
   }
 }
 
 Lista::~Lista() {
-  cout << "Lista com " << quantidade << " videos destruida" << endl;
+  cout << "Lista com " << this->videos->size() << " videos destruida" << endl;
   delete this->videos;
 }
